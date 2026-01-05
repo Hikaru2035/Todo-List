@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:20-slim
 
 WORKDIR /usr/src/app
 
@@ -7,6 +7,4 @@ RUN npm install
 
 COPY . .
 
-RUN npx prisma generate
-
-CMD ["sh", "-c", "npx prisma migrate deploy && node index.js"]
+CMD ["sh", "-c", "npx prisma migrate deploy && npx prisma generate && node index.js"]
